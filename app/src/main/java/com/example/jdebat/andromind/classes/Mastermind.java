@@ -1,5 +1,7 @@
 package com.example.jdebat.andromind.classes;
 
+import android.util.Log;
+
 /**
  * Created by mathieu on 22/01/2015.
  */
@@ -17,10 +19,14 @@ public class Mastermind {
     public int nombrePiontMalPlace (int[] codeTest) {
         int res = 0;
 
-        int[] str = codeGagnant;
+        int[] str = new int[4];
+        for(int i = 0;i<4;i++){
+            str[i] = codeGagnant[i];
+        }
 
         for(int i = 0; i <4; i++) {
             ColorEnum test = ColorEnum.getColorEnum(codeTest[i]);
+            Log.i("var", String.valueOf(test));
             switch(test) {
                 case GRIS:
                     if(traitementNbBonneCouleur(str, test))
@@ -61,12 +67,8 @@ public class Mastermind {
     }
 
     public boolean traitementNbBonneCouleur(int[] code, ColorEnum aTester) {
-
-
         for(int i=0; i<code.length;i++) {
-            System.out.println("On entre dans la boucle");
             if(code[i] == aTester.getValue()) {
-                System.out.println("On est dans le if");
                 code[i] = -1;
                 return true;
             }

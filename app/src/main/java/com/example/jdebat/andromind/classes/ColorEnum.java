@@ -40,14 +40,14 @@ public enum ColorEnum {
 
     public static ColorEnum getColorEnum(int value) {
         switch (value){
-            case 0xFF0000 : return ROUGE;
-            case 0x0000FF : return BLUE;
-            case 0xFFFF00 : return JAUNE;
-            case 0x008000 : return VERT;
-            case 0xFFA500 : return ORANGE;
-            case 0xFFFFFF : return GRIS;
-            case 0xD02090 : return VIOLET;
-            case 0xFF00FF : return MARRON;
+            case 0xFFFF0000 : return ROUGE;
+            case 0xFF0000FF : return BLUE;
+            case 0xFFFFFF00 : return JAUNE;
+            case 0xFF008000 : return VERT;
+            case 0xFFFFA500 : return ORANGE;
+            case 0xFFAAAAAA : return GRIS;
+            case 0xFFD02090 : return VIOLET;
+            case 0xFF854513 : return MARRON;
 
             default: return null;
         }

@@ -17,7 +17,7 @@ public class Game implements Parcelable {
     private int nbJoueurs;
     private boolean bluetoothGame;
 
-    private String codeGagnant[] = new String[4];
+    private int codeGagnant[] = new int[4];
 
     public Game(int nbJoueurs, boolean bluetoothGame) {
         this.nbJoueurs = nbJoueurs;
@@ -33,7 +33,7 @@ public class Game implements Parcelable {
         this.nbJoueurs = nbJoueurs;
     }
 
-    public void setCodeGagnant(String value1, String value2, String value3, String value4) {
+    public void setCodeGagnant(int value1, int value2, int value3, int value4) {
         this.codeGagnant[0] = value1;
         this.codeGagnant[1] = value2;
         this.codeGagnant[2] = value3;
@@ -66,7 +66,7 @@ public class Game implements Parcelable {
         return bluetoothGame;
     }
 
-    public String[] getCodeGagnant() {
+    public int[] getCodeGagnant() {
         return codeGagnant;
     }
 

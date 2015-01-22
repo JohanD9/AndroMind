@@ -1,5 +1,6 @@
 package com.example.jdebat.andromind;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -7,19 +8,25 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.jdebat.andromind.classes.ColorEnum;
 import com.example.jdebat.andromind.classes.Game;
+import com.example.jdebat.andromind.classes.Mastermind;
 
 
 public class GameActivity extends ActionBarActivity {
 
+    private Context context = this;
+
     private String login;
 
     private Game myGame;
-    private String codeGagnant[] = new String[4];
+    private int codeGagnant[] = new int[4];
 
     private static final String LOGIN = "login";
     private static final String CLIENTS = "clients";
@@ -38,10 +45,20 @@ public class GameActivity extends ActionBarActivity {
     private TableRow mTr8;
     private TableRow mTr9;
 
+    private Button mButtonSend;
+    private Button mButtonClear;
+
+    private TextView mBp;
+    private TextView mMp;
+
     private int nbEssai = 10;
     private int nbCaseRemplie = 0;
 
     private TableLayout mTableJeu;
+
+    private Mastermind mastermind;
+
+    int codeTest[] = new int[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +66,18 @@ public class GameActivity extends ActionBarActivity {
         setContentView(R.layout.activity_game);
 
         Bundle b=this.getIntent().getExtras();
-        codeGagnant = b.getStringArray(CODE_GAGNANTS);
+        codeGagnant = b.getIntArray(CODE_GAGNANTS);
         login = b.getString(LOGIN);
+
+        mastermind = new Mastermind(codeGagnant);
 
         for (int i = 0; i <4; i++)
         {
-            Log.i("Game", codeGagnant[i]);
+            Log.i("Game", String.valueOf(codeGagnant[i]));
         }
+
+        mBp = (TextView) findViewById(R.id.textViewBp);
+        mMp = (TextView) findViewById(R.id.textViewMp);
 
         mTableColor = (TableRow) findViewById(R.id.tableColor);
         mTableColor.getChildAt(0).setBackgroundColor(ColorEnum.ROUGE.getValue());
@@ -142,18 +164,68 @@ public class GameActivity extends ActionBarActivity {
             }
         });
 
+        mButtonClear = (Button) findViewById(R.id.buttonClearLigne);
+        mButtonClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TableRow row = (TableRow) mTableJeu.getChildAt(nbEssai-1);
+                row.getChildAt(0).setBackgroundColor(0xFFFFFFFF);
+                row.getChildAt(1).setBackgroundColor(0xFFFFFFFF);
+                row.getChildAt(2).setBackgroundColor(0xFFFFFFFF);
+                row.getChildAt(3).setBackgroundColor(0xFFFFFFFF);
+                nbCaseRemplie = 0;
+                mButtonSend.setBackgroundColor(0xFF666666);
+                mButtonSend.setTextColor(0xFFEEEEEE);
+            }
+        });
+
+        mButtonSend = (Button) findViewById(R.id.buttonValiderLigne);
+        mButtonSend.setBackgroundColor(0xFF666666);
+        mButtonSend.setTextColor(0xFFEEEEEE);
+        mButtonSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (nbCaseRemplie < 4 ) {
+                    Toast.makeText(context, "Remplissez toutes les cases de la ligne", Toast.LENGTH_LONG).show();
+                } else {
+
+                    int bp = mastermind.nombrePiontBienPlace(codeTest);
+                    if (bp == 4) {
+                        Toast.makeText(context, "WIN", Toast.LENGTH_LONG).show();
+                    } else {
+                        int mp = mastermind.nombrePiontMalPlace(codeTest);
+                        mp = mp - bp;
+                        mBp.setText(String.valueOf(bp));
+                        mMp.setText(String.valueOf(mp));
+                        Log.i("bp", String.valueOf(bp));
+                        Log.i("mp", String.valueOf(mp));
+                        nbEssai--;
+                        nbCaseRemplie = 0;
+                    }
+
+
+
+                }
+                Log.i("test", String.valueOf(nbEssai));
+            }
+        });
     }
 
 
     public void setCouleurToCurrentRow(int color) {
         if (nbEssai > 0) {
             if (nbCaseRemplie < 4) {
-                TableRow row = (TableRow) mTableJeu.getChildAt(nbEssai-1);
+                TableRow row = (TableRow) mTableJeu.getChildAt(nbEssai - 1);
                 row.getChildAt(nbCaseRemplie).setBackgroundColor(color);
+                codeTest[nbCaseRemplie] = color;
                 nbCaseRemplie++;
-            } else {
-                nbEssai--;
-                nbCaseRemplie = 0;
+                if (nbCaseRemplie == 4) {
+                    mButtonSend.setEnabled(true);
+                    mButtonSend.setClickable(true);
+                    mButtonSend.setBackgroundColor(0xFFFF8400);
+                    mButtonSend.setTextColor(0xFF222222);
+                    ;
+                }
             }
         }
 

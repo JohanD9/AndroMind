@@ -25,7 +25,7 @@ public class GameLauncherActivity extends ActionBarActivity {
     private String login;
 
     private Game myGame;
-    private String codeGagnant[] = new String[4];
+    private int codeGagnant[] = new int[4];
 
     private static final String LOGIN = "login";
     private static final String CLIENTS = "clients";
@@ -53,17 +53,17 @@ public class GameLauncherActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 myGame = new Game(1, false);
-                myGame.setCodeGagnant(ColorEnum.randomColor().toString(), ColorEnum.randomColor().toString(), ColorEnum.randomColor().toString(), ColorEnum.randomColor().toString());
+                myGame.setCodeGagnant(ColorEnum.randomColor().getValue(), ColorEnum.randomColor().getValue(), ColorEnum.randomColor().getValue(), ColorEnum.randomColor().getValue());
                 codeGagnant = myGame.getCodeGagnant();
                 Bundle codeGBundle = new Bundle();
-                codeGBundle.putStringArray(CODE_GAGNANTS, myGame.getCodeGagnant());
+                codeGBundle.putIntArray(CODE_GAGNANTS, myGame.getCodeGagnant());
                 codeGBundle.putString(LOGIN, login);
 
                 Intent in = new Intent(getBaseContext(), GameActivity.class);
                 in.putExtras(codeGBundle);
                 for (int i = 0; i <4; i++)
                 {
-                    Log.i("GameLauncher", codeGagnant[i]);
+                    Log.i("GameLauncher", String.valueOf(codeGagnant[i]));
                 }
                 startActivity(in);
             }

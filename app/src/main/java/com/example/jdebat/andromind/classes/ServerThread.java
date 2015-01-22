@@ -35,6 +35,7 @@ public class ServerThread extends Thread {
             try {
                 System.out.println("WAIT");
                 socket = mmServerSocket.accept();
+                System.out.println("OK");
 
             } catch (IOException e) {
                 break;
