@@ -22,7 +22,7 @@ public class Mastermind {
         for(int i = 0; i <4; i++) {
             ColorEnum test = ColorEnum.getColorEnum(codeTest[i]);
             switch(test) {
-                case GRIS: :
+                case GRIS:
                     if(traitementNbBonneCouleur(str, test))
                         res ++;
                     break;
