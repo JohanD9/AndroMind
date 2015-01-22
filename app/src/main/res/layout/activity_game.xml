@@ -90,7 +90,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
     <TableRow style="@style/frag1HeaderTableRow"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:id="@+id/tableColor">
         <TextView style="@style/frag1HeaderCol" />
         <TextView style="@style/frag1HeaderCol" />
         <TextView style="@style/frag1HeaderCol" />

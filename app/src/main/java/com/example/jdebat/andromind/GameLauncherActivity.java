@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,7 @@ public class GameLauncherActivity extends ActionBarActivity {
     private static final String LOGIN = "login";
     private static final String CLIENTS = "clients";
     private static final String REPONSE = "reponse";
+    private static final String CODE_GAGNANTS = "reponse";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +53,19 @@ public class GameLauncherActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 myGame = new Game(1, false);
-
                 myGame.setCodeGagnant(ColorEnum.randomColor().toString(), ColorEnum.randomColor().toString(), ColorEnum.randomColor().toString(), ColorEnum.randomColor().toString());
-                Intent i = new Intent(getBaseContext(), GameActivity.class);
-                i.putExtra(LOGIN, login);
-                startActivity(i);
+                codeGagnant = myGame.getCodeGagnant();
+                Bundle codeGBundle = new Bundle();
+                codeGBundle.putStringArray(CODE_GAGNANTS, myGame.getCodeGagnant());
+                codeGBundle.putString(LOGIN, login);
+
+                Intent in = new Intent(getBaseContext(), GameActivity.class);
+                in.putExtras(codeGBundle);
+                for (int i = 0; i <4; i++)
+                {
+                    Log.i("GameLauncher", codeGagnant[i]);
+                }
+                startActivity(in);
             }
         });
 

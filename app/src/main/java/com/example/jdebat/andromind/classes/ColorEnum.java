@@ -14,7 +14,7 @@ public enum ColorEnum {
     ORANGE("#FFA500"),
     BLANC("#FFFFFF"),
     VIOLET("#D02090"),
-    FUSHIA("#FF00FF");
+    FUSHIA("0xFF00FF");
 
     private String name = "";
 
