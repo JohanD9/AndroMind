@@ -48,6 +48,7 @@ public enum ColorEnum {
             case 0xFFFFFF : return GRIS;
             case 0xD02090 : return VIOLET;
             case 0xFF00FF : return MARRON;
+
             default: return null;
         }
     }
