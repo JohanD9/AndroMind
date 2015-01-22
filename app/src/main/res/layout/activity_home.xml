@@ -23,11 +23,10 @@
         android:id="@+id/editTextLogin"
         android:textColor="#ffeeeeee"
         android:backgroundTint="@android:color/background_light"
-        android:layout_below="@+id/imageView"
-        android:layout_alignRight="@+id/imageButtonPlay"
-        android:layout_alignEnd="@+id/imageButtonPlay"
-        android:layout_marginTop="70dp"
-        style="@style/Base.Widget.AppCompat.EditText" />
+        android:textColorHint="#ffeeeeee"
+        android:layout_above="@+id/imageButtonPlay"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="47dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -37,5 +36,8 @@
         android:background="@android:color/transparent"
         android:layout_marginBottom="43dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:maxWidth="100dp"
+        android:maxHeight="100dp"
+        android:clickable="true" />
 </RelativeLayout>

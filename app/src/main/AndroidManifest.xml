@@ -17,12 +17,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Home2Activity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_home2"
-            android:theme="@style/FullscreenTheme" >
-        </activity>
-        <activity
             android:name=".GameLauncherActivity"
             android:label="@string/title_activity_game_launcher" >
         </activity>
