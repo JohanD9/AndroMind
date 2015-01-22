@@ -7,14 +7,14 @@ import java.util.List;
 import java.util.Random;
 
 public enum ColorEnum {
-    ROUGE ("#FF0000"),
-    BLUE("#0000FF"),
-    JAUNE("#FFFF00"),
-    VERT("#008000"),
-    ORANGE("#FFA500"),
-    BLANC("#FFFFFF"),
-    VIOLET("#D02090"),
-    FUSHIA("#FF00FF");
+    ROUGE ("0xFF0000"),
+    BLUE("0x0000FF"),
+    JAUNE("0xFFFF00"),
+    VERT("0x008000"),
+    ORANGE("0xFFA500"),
+    BLANC("0xFFFFFF"),
+    VIOLET("0xD02090"),
+    FUSHIA("0xFF00FF");
 
     private String name = "";
 
@@ -36,5 +36,19 @@ public enum ColorEnum {
 
     public static ColorEnum randomColor()  {
         return VALUES.get(RANDOM.nextInt(SIZE));
+    }
+
+    public static ColorEnum getColorEnum(String value) {
+        switch (value){
+            case "0xFF0000" : return ROUGE;
+            case "0x0000FF" : return BLUE;
+            case "0xFFFF00" : return JAUNE;
+            case "0x008000" : return VERT;
+            case "0xFFA500" : return ORANGE;
+            case "0xFFFFFF" : return BLANC;
+            case "0xD02090" : return VIOLET;
+            case "0xFF00FF" : return FUSHIA;
+            default: return null;
+        }
     }
 }
