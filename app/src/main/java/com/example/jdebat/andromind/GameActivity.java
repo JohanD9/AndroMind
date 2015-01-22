@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import com.example.jdebat.andromind.classes.ColorEnum;
@@ -25,6 +27,21 @@ public class GameActivity extends ActionBarActivity {
     private static final String CODE_GAGNANTS = "reponse";
 
     private TableRow mTableColor;
+    private TableRow mTr0;
+    private TableRow mTr1;
+    private TableRow mTr2;
+    private TableRow mTr3;
+    private TableRow mTr4;
+    private TableRow mTr5;
+    private TableRow mTr6;
+    private TableRow mTr7;
+    private TableRow mTr8;
+    private TableRow mTr9;
+
+    private int nbEssai = 10;
+    private int nbCaseRemplie = 0;
+
+    private TableLayout mTableJeu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +58,106 @@ public class GameActivity extends ActionBarActivity {
         }
 
         mTableColor = (TableRow) findViewById(R.id.tableColor);
-        mTableColor.getChildAt(0).setBackgroundColor(Color.BLUE);
+        mTableColor.getChildAt(0).setBackgroundColor(ColorEnum.ROUGE.getValue());
+        mTableColor.getChildAt(1).setBackgroundColor(ColorEnum.BLUE.getValue());
+        mTableColor.getChildAt(2).setBackgroundColor(ColorEnum.JAUNE.getValue());
+        mTableColor.getChildAt(3).setBackgroundColor(ColorEnum.VERT.getValue());
+        mTableColor.getChildAt(4).setBackgroundColor(ColorEnum.ORANGE.getValue());
+        mTableColor.getChildAt(5).setBackgroundColor(ColorEnum.GRIS.getValue());
+        mTableColor.getChildAt(6).setBackgroundColor(ColorEnum.VIOLET.getValue());
+        mTableColor.getChildAt(7).setBackgroundColor(ColorEnum.MARRON.getValue());
+
+        mTableColor.getChildAt(0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setCouleurToCurrentRow(ColorEnum.ROUGE.getValue());
+            }
+        });
+
+        mTableColor.getChildAt(1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setCouleurToCurrentRow(ColorEnum.BLUE.getValue());
+            }
+        });
+
+        mTableColor.getChildAt(2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setCouleurToCurrentRow(ColorEnum.JAUNE.getValue());
+            }
+        });
+
+        mTableColor.getChildAt(3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setCouleurToCurrentRow(ColorEnum.VERT.getValue());
+            }
+        });
+
+        mTableColor.getChildAt(4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setCouleurToCurrentRow(ColorEnum.ORANGE.getValue());
+            }
+        });
+
+        mTableColor.getChildAt(5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setCouleurToCurrentRow(ColorEnum.GRIS.getValue());
+            }
+        });
+
+        mTableColor.getChildAt(6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setCouleurToCurrentRow(ColorEnum.VIOLET.getValue());
+            }
+        });
+
+        mTableColor.getChildAt(7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setCouleurToCurrentRow(ColorEnum.MARRON.getValue());
+            }
+        });
+
+        mTableJeu = (TableLayout) findViewById(R.id.tableLayout_jeu);
+        mTr0 = (TableRow) mTableJeu.getChildAt(0);
+        mTr1 = (TableRow) mTableJeu.getChildAt(1);
+        mTr2 = (TableRow) mTableJeu.getChildAt(2);
+        mTr3 = (TableRow) mTableJeu.getChildAt(3);
+        mTr4 = (TableRow) mTableJeu.getChildAt(4);
+        mTr5 = (TableRow) mTableJeu.getChildAt(5);
+        mTr6 = (TableRow) mTableJeu.getChildAt(6);
+        mTr7 = (TableRow) mTableJeu.getChildAt(7);
+        mTr8 = (TableRow) mTableJeu.getChildAt(8);
+        mTr9 = (TableRow) mTableJeu.getChildAt(9);
+
+        mTableJeu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 
+
+    public void setCouleurToCurrentRow(int color) {
+        if (nbEssai > 0) {
+            if (nbCaseRemplie < 4) {
+                TableRow row = (TableRow) mTableJeu.getChildAt(nbEssai-1);
+                row.getChildAt(nbCaseRemplie).setBackgroundColor(color);
+                nbCaseRemplie++;
+            } else {
+                nbEssai--;
+                nbCaseRemplie = 0;
+            }
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

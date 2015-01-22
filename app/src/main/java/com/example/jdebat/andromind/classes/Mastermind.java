@@ -6,76 +6,72 @@ package com.example.jdebat.andromind.classes;
 public class Mastermind {
 
     private int nbCoupPossible = 10;
-    private static String[] codeGagnant = new String[4];
 
-    private boolean isBlanc;
-    private boolean isBlue;
-    private boolean isFushia;
-    private boolean isJaune;
-    private boolean isOrange;
-    private boolean isRouge;
-    private boolean isVert;
-    private boolean isViolet;
+    private static int[] codeGagnant;
 
-    public Mastermind() {
-        for(int i = 0; i <4; i++) {
-            codeGagnant[i] = ColorEnum.randomColor().toString();
-        }
-        isBlanc = false;
-        isBlue = false;
-        isFushia = false;
-        isJaune = false;
-        isOrange = false;
-        isRouge = false;
-        isVert = false;
-        isViolet = false;
+    public Mastermind(int[] codeGagnant) {
+
+        this.codeGagnant= codeGagnant;
     }
 
-    public int piontPrésent (String[] couleursJouées) {
+    public int nombrePiontMalPlace (int[] codeTest) {
         int res = 0;
 
+        int[] str = codeGagnant;
+
         for(int i = 0; i <4; i++) {
-            ColorEnum test = ColorEnum.valueOf(couleursJouées[i]);
+            ColorEnum test = ColorEnum.getColorEnum(codeTest[i]);
             switch(test) {
-                case BLANC :
-                    traitementNbBonneCouleur(res,isBlanc);
+                case GRIS:
+                    traitementNbBonneCouleur(str, ColorEnum.GRIS, res);
                     break;
                 case BLUE:
-                    traitementNbBonneCouleur(res,isBlue);
+                    traitementNbBonneCouleur(str, ColorEnum.BLUE, res);
                     break;
-                case FUSHIA:
-                    traitementNbBonneCouleur(res,isFushia);
+                case MARRON:
+                    traitementNbBonneCouleur(str,ColorEnum.MARRON, res);
                     break;
                 case JAUNE:
-                    traitementNbBonneCouleur(res,isJaune);
+                    traitementNbBonneCouleur(str, ColorEnum.JAUNE, res);
                     break;
                 case ORANGE:
-                    traitementNbBonneCouleur(res,isOrange);
+                    traitementNbBonneCouleur(str,ColorEnum.ORANGE, res);
                     break;
                 case ROUGE:
-                    traitementNbBonneCouleur(res,isRouge);
+                    traitementNbBonneCouleur(str,ColorEnum.ROUGE, res);
                     break;
                 case VERT:
-                    traitementNbBonneCouleur(res,isVert);
+                    traitementNbBonneCouleur(str,ColorEnum.VERT, res);
                     break;
                 case VIOLET:
-                    traitementNbBonneCouleur(res,isViolet);
+                    traitementNbBonneCouleur(str,ColorEnum.VIOLET,res);
                     break;
                 default:
             }
         }
-
-
         return res;
     }
 
-    public void traitementNbBonneCouleur(int resultat, boolean aTester) {
-        if(!aTester) {
-            resultat ++;
-            aTester = true;
-        } else {
-            aTester = false;
+    public void traitementNbBonneCouleur(int[] code, ColorEnum aTester, int res) {
+
+        for(int i=0; i<code.length;i++) {
+            if(code[i] == aTester.getValue()) {
+                res ++;
+                code[i] = -1;
+                i = code.length;
+            }
         }
+
     }
 
+    public int nombrePiontBienPlace (int[] codeTest){
+        int res = 0;
+
+        for(int i =0; i<4;i++) {
+            if(codeGagnant[i] == codeTest[i]) {
+                res ++;
+            }
+        }
+        return res;
+    }
 }

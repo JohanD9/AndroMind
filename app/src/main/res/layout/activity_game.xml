@@ -12,14 +12,16 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
-        <TableRow style="@style/frag1HeaderTableRow">
+        <TableRow style="@style/frag1HeaderTableRow"
+            android:id="@+id/tr0">
+            <TextView style="@style/frag1HeaderCol" />
+            <TextView style="@style/frag1HeaderCol"/>
             <TextView style="@style/frag1HeaderCol" />
             <TextView style="@style/frag1HeaderCol" />
-            <TextView style="@style/frag1HeaderCol" />
-            <TextView style="@style/frag1HeaderCol" />
         </TableRow>
 
-        <TableRow style="@style/frag1TableRow">
+        <TableRow style="@style/frag1TableRow"
+            android:id="@+id/tr1">
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
@@ -27,56 +29,64 @@
 
         </TableRow>
 
-        <TableRow style="@style/frag1TableRow">
-            <TextView style="@style/frag1Col" />
-            <TextView style="@style/frag1Col" />
-            <TextView style="@style/frag1Col" />
-            <TextView style="@style/frag1Col" />
-        </TableRow>
-
-        <TableRow style="@style/frag1TableRow">
+        <TableRow style="@style/frag1TableRow"
+            android:id="@+id/tr2">
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
         </TableRow>
 
-        <TableRow style="@style/frag1TableRow">
+        <TableRow style="@style/frag1TableRow"
+            android:id="@+id/tr3">
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
         </TableRow>
 
-        <TableRow style="@style/frag1TableRow">
+        <TableRow style="@style/frag1TableRow"
+            android:id="@+id/tr4">
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
         </TableRow>
 
-        <TableRow style="@style/frag1TableRow">
+        <TableRow style="@style/frag1TableRow"
+            android:id="@+id/tr5">
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
         </TableRow>
 
-        <TableRow style="@style/frag1TableRow">
+        <TableRow style="@style/frag1TableRow"
+            android:id="@+id/tr6">
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
         </TableRow>
 
-        <TableRow style="@style/frag1TableRow">
+        <TableRow style="@style/frag1TableRow"
+            android:id="@+id/tr7">
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
         </TableRow>
 
-        <TableRow style="@style/frag1TableRow">
+        <TableRow style="@style/frag1TableRow"
+            android:id="@+id/tr8">
+            <TextView style="@style/frag1Col" />
+            <TextView style="@style/frag1Col" />
+            <TextView style="@style/frag1Col" />
+            <TextView style="@style/frag1Col" />
+        </TableRow>
+
+        <TableRow style="@style/frag1TableRow"
+            android:id="@+id/tr9">
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
             <TextView style="@style/frag1Col" />
@@ -113,5 +123,34 @@
         android:layout_above="@+id/tableLayout_choixCouleur"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Envoyer"
+        android:id="@+id/buttonValiderLigne"
+        android:layout_above="@+id/tableLayout_choixCouleur"
+        android:layout_alignRight="@+id/tableLayout_choixCouleur"
+        android:layout_alignEnd="@+id/tableLayout_choixCouleur"
+        android:textColor="#ff222222"
+        android:background="#ffff8400"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:height="20dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vider ligne"
+        android:id="@+id/buttonClearLigne"
+        android:textColor="#ff222222"
+        android:background="#ffed150c"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:height="20dp"
+        android:layout_above="@+id/buttonValiderLigne"
+        android:layout_alignLeft="@+id/buttonValiderLigne"
+        android:layout_alignStart="@+id/buttonValiderLigne"
+        android:layout_marginBottom="10dp" />
 
 </RelativeLayout>
