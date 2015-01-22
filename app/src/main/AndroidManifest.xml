@@ -20,6 +20,10 @@
             android:name=".GameLauncherActivity"
             android:label="@string/title_activity_game_launcher" >
         </activity>
+        <activity
+            android:name=".SelectDeviceToConnectActivity"
+            android:label="@string/title_activity_select_device_to_connect" >
+        </activity>
     </application>
 
 </manifest>
