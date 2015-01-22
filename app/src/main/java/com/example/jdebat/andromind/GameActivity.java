@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
@@ -163,6 +164,8 @@ public class GameActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.menu_game, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.exit_game_menu, menu);
         return true;
     }
 
@@ -178,6 +181,12 @@ public class GameActivity extends ActionBarActivity {
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.exit_game:
+                System.exit(RESULT_OK);
+                return false;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
