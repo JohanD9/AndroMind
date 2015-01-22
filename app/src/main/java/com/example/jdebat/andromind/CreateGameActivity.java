@@ -68,20 +68,30 @@ public class CreateGameActivity extends ActionBarActivity {
         EditText e = (EditText) findViewById(R.id.editText);
         nbJoueur = Integer.parseInt(e.getText().toString());
 
-        AlertDialog.Builder mAlertDialog = new AlertDialog.Builder(this);
-        mAlertDialog.setTitle("Connexion ..");
-        mAlertDialog.setIcon(R.drawable.ic_menu_android);
-        mAlertDialog.setMessage("Attente des autres joueurs");
-        mAlertDialog.setPositiveButton("OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        ServerThread st = new ServerThread(nbJoueur-1);
-                        st.run();
+        if (nbJoueur > 1) {
+            AlertDialog.Builder mAlertDialog = new AlertDialog.Builder(this);
+            mAlertDialog.setTitle("Connexion ..");
+            mAlertDialog.setIcon(R.drawable.ic_menu_android);
+            mAlertDialog.setMessage("Attente des autres joueurs");
+            mAlertDialog.setPositiveButton("OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            ServerThread st = new ServerThread(nbJoueur-1);
+                            st.run();
+                        }
                     }
-                }
-        );
-        mAlertDialog.show();
+            );
+            mAlertDialog.show();
+        } else {
+            Context context = getApplicationContext();
+            CharSequence text = "Le nombre de joueurs n'est pas correct !!!";
+            int duration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+
     }
 
     @Override
