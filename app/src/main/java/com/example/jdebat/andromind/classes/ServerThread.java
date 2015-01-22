@@ -1,8 +1,12 @@
 package com.example.jdebat.andromind.classes;
 
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
+import android.content.DialogInterface;
+
+import com.example.jdebat.andromind.R;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -28,12 +32,13 @@ public class ServerThread extends Thread {
     }
 
     public void run() {
+
         BluetoothSocket socket = null;
+        ConnectedThread ct;
         int cpt = 0;
         // Keep listening until exception occurs or a socket is returned
         while (cpt != nbJoueur) {
             try {
-                System.out.println("WAIT");
                 socket = mmServerSocket.accept();
                 System.out.println("OK");
 
@@ -44,10 +49,17 @@ public class ServerThread extends Thread {
             if (socket != null) {
                 // Do work to manage the connection (in a separate thread)
                 //manageConnectedSocket(socket);
-                //mmServerSocket.close();
+                ct = new ConnectedThread(socket);
+                ct.run();
                 //break;
             }
+
             cpt++;
+        }
+        try {
+            mmServerSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
