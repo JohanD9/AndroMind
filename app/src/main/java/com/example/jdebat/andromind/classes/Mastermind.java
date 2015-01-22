@@ -7,44 +7,52 @@ public class Mastermind {
 
     private int nbCoupPossible = 10;
 
-    private static String[] codeGagnant;
+    private static int[] codeGagnant;
 
-    public Mastermind(String[] codeGagnant) {
+    public Mastermind(int[] codeGagnant) {
 
         this.codeGagnant= codeGagnant;
     }
 
-    public int nombrePiontMalPlace (String[] codeTest) {
+    public int nombrePiontMalPlace (int[] codeTest) {
         int res = 0;
 
-        String[] str = codeGagnant;
+        int[] str = codeGagnant;
 
         for(int i = 0; i <4; i++) {
             ColorEnum test = ColorEnum.getColorEnum(codeTest[i]);
             switch(test) {
                 case BLANC :
-                    traitementNbBonneCouleur(str, ColorEnum.BLANC, res);
+                    if(traitementNbBonneCouleur(str, test))
+                        res ++;
                     break;
                 case BLUE:
-                    traitementNbBonneCouleur(str, ColorEnum.BLUE, res);
+                    if(traitementNbBonneCouleur(str, test))
+                        res ++;
                     break;
                 case FUSHIA:
-                    traitementNbBonneCouleur(str,ColorEnum.FUSHIA, res);
+                    if(traitementNbBonneCouleur(str, test))
+                        res ++;
                     break;
                 case JAUNE:
-                    traitementNbBonneCouleur(str, ColorEnum.JAUNE, res);
+                    if(traitementNbBonneCouleur(str, test))
+                        res ++;
                     break;
                 case ORANGE:
-                    traitementNbBonneCouleur(str,ColorEnum.ORANGE, res);
+                    if(traitementNbBonneCouleur(str, test))
+                        res ++;
                     break;
                 case ROUGE:
-                    traitementNbBonneCouleur(str,ColorEnum.ROUGE, res);
+                    if(traitementNbBonneCouleur(str, test))
+                        res ++;
                     break;
                 case VERT:
-                    traitementNbBonneCouleur(str,ColorEnum.VERT, res);
+                    if(traitementNbBonneCouleur(str, test))
+                        res ++;
                     break;
                 case VIOLET:
-                    traitementNbBonneCouleur(str,ColorEnum.VIOLET,res);
+                    if(traitementNbBonneCouleur(str, test))
+                        res ++;
                     break;
                 default:
             }
@@ -52,23 +60,25 @@ public class Mastermind {
         return res;
     }
 
-    public void traitementNbBonneCouleur(String[] code, ColorEnum aTester, int res) {
+    public boolean traitementNbBonneCouleur(int[] code, ColorEnum aTester) {
+
 
         for(int i=0; i<code.length;i++) {
-            if(code[i].compareTo(aTester.toString()) == 0) {
-                res ++;
-                code[i] = "-1";
-                i = code.length;
+            System.out.println("On entre dans la boucle");
+            if(code[i] == aTester.getValue()) {
+                System.out.println("On est dans le if");
+                code[i] = -1;
+                return true;
             }
         }
-
+        return false;
     }
 
-    public int nombrePiontBienPlace (String[] codeTest){
+    public int nombrePiontBienPlace (int[] codeTest){
         int res = 0;
 
         for(int i =0; i<4;i++) {
-            if(codeGagnant[i].compareTo(codeTest[i]) == 0) {
+            if(codeGagnant[i] == codeTest[i]) {
                 res ++;
             }
         }

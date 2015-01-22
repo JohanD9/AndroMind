@@ -7,23 +7,23 @@ import java.util.List;
 import java.util.Random;
 
 public enum ColorEnum {
-    ROUGE ("0xFF0000"),
-    BLUE("0x0000FF"),
-    JAUNE("0xFFFF00"),
-    VERT("0x008000"),
-    ORANGE("0xFFA500"),
-    BLANC("0xFFFFFF"),
-    VIOLET("0xD02090"),
-    FUSHIA("0xFF00FF");
+    ROUGE (0xFFFF0000),
+    BLUE(0xFF0000FF),
+    JAUNE(0xFFFFFF00),
+    VERT(0xFF008000),
+    ORANGE(0xFFFFA500),
+    BLANC(0xFFFFFFFF),
+    VIOLET(0xFFD02090),
+    FUSHIA(0xFFFF00FF);
 
-    private String name = "";
+    private int name;
 
     //Constructeur
-    ColorEnum(String name){
+    ColorEnum(int name){
         this.name = name;
     }
 
-    public String toString(){
+    public int getValue(){
         return name;
     }
 
@@ -38,16 +38,16 @@ public enum ColorEnum {
         return VALUES.get(RANDOM.nextInt(SIZE));
     }
 
-    public static ColorEnum getColorEnum(String value) {
+    public static ColorEnum getColorEnum(int value) {
         switch (value){
-            case "0xFF0000" : return ROUGE;
-            case "0x0000FF" : return BLUE;
-            case "0xFFFF00" : return JAUNE;
-            case "0x008000" : return VERT;
-            case "0xFFA500" : return ORANGE;
-            case "0xFFFFFF" : return BLANC;
-            case "0xD02090" : return VIOLET;
-            case "0xFF00FF" : return FUSHIA;
+            case 0xFFFF0000 : return ROUGE;
+            case 0xFF0000FF : return BLUE;
+            case 0xFFFFFF00 : return JAUNE;
+            case 0xFF008000 : return VERT;
+            case 0xFFFFA500 : return ORANGE;
+            case 0xFFFFFFFF : return BLANC;
+            case 0xFFD02090 : return VIOLET;
+            case 0xFFFF00FF : return FUSHIA;
             default: return null;
         }
     }
