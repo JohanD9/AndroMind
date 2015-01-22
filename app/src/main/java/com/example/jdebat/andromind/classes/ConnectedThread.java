@@ -1,6 +1,12 @@
 package com.example.jdebat.andromind.classes;
 
 import android.bluetooth.BluetoothSocket;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.example.jdebat.andromind.GameActivity;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +19,14 @@ public class ConnectedThread {
     private final BluetoothSocket mmSocket;
     private final InputStream mmInStream;
     private final OutputStream mmOutStream;
+
+    private Game myGame;
+    private int codeGagnant[] = new int[4];
+
+    private static final String LOGIN = "login";
+    private static final String CLIENTS = "clients";
+    private static final String REPONSE = "reponse";
+    private static final String CODE_GAGNANTS = "reponse";
 
     public ConnectedThread(BluetoothSocket socket) {
         mmSocket = socket;
@@ -35,17 +49,6 @@ public class ConnectedThread {
         byte[] buffer = new byte[1024];  // buffer store for the stream
         int bytes; // bytes returned from read()
 
-        // Keep listening to the InputStream until an exception occurs
-        while (true) {
-            try {
-                // Read from the InputStream
-                bytes = mmInStream.read(buffer);
-                // Send the obtained bytes to the UI activity
-                //mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer).sendToTarget();
-            } catch (IOException e) {
-                break;
-            }
-        }
     }
 
     /* Call this from the main activity to send data to the remote device */
