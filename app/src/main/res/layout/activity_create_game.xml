@@ -14,4 +14,38 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:src="@drawable/andromind_logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Nombre de joueur"
+        android:id="@+id/textView4"
+        android:clickable="false"
+        android:layout_below="@+id/imageView4"
+        android:layout_centerHorizontal="true"
+        android:background="#ffffffff" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:background="#ffffffff" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jouer"
+        android:id="@+id/button2"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="118dp"
+        android:clickable="false"
+        android:onClick="lancer"/>
+
 </RelativeLayout>

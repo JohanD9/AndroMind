@@ -10,9 +10,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.jdebat.andromind.classes.ClientThread;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +28,7 @@ public class SelectDeviceToConnectActivity extends ActionBarActivity {
     private BluetoothAdapter mBluetoothAdapter;
     private ArrayAdapter<String> mArrayAdapter;
     private ListView lv;
+    private BluetoothDevice device;
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
@@ -31,7 +36,7 @@ public class SelectDeviceToConnectActivity extends ActionBarActivity {
             // When discovery finds a device
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 // Get the BluetoothDevice object from the Intent
-                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 // Add the name and address to an array adapter to show in a ListView
                 mArrayAdapter.add(device.getName() + " " + device.getAddress());
             }
@@ -64,13 +69,28 @@ public class SelectDeviceToConnectActivity extends ActionBarActivity {
                 startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             } else {
                 searchDevices();
+                execThread();
             }
         }
+    }
+
+    public void execThread () {
+        System.out.println("LANCER");
+        lv = (ListView) findViewById(R.id.listView);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println(mArrayAdapter.getItem(position));
+                ClientThread cl = new ClientThread(device);
+                cl.run();
+            }
+        });
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == -1) {
             searchDevices();
+            execThread();
         }
     }
 

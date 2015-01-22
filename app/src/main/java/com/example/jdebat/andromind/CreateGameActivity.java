@@ -1,16 +1,23 @@
 package com.example.jdebat.andromind;
 
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.jdebat.andromind.classes.ServerThread;
 
@@ -25,8 +32,8 @@ public class CreateGameActivity extends ActionBarActivity {
 
     private BluetoothAdapter mBluetoothAdapter;
     private BluetoothServerSocket bss;
-    private ArrayList<BluetoothSocket> clients = new ArrayList<BluetoothSocket>();
     private String nom = "AndroMind";
+    private int nbJoueur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,21 +52,6 @@ public class CreateGameActivity extends ActionBarActivity {
         startActivityForResult(discoverableIntent, 3600);
     }
 
-    protected void activBluetooth () {
-        int REQUEST_ENABLE_BT = 10;
-
-        if (mBluetoothAdapter == null) {
-            // Device does not support Bluetooth
-        } else {
-            if (!mBluetoothAdapter.isEnabled()) {
-                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-            } else {
-                activVisibility();
-            }
-        }
-    }
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         System.out.println(resultCode);
         if (resultCode == -1) {
@@ -67,9 +59,29 @@ public class CreateGameActivity extends ActionBarActivity {
         }
 
         if (resultCode == 3600) {
-            ServerThread st = new ServerThread(1); // clients.size()
-            st.run();
+            Button b = (Button) findViewById(R.id.button2);
+            b.setClickable(true);
         }
+    }
+
+    public void lancer (View view) {
+        EditText e = (EditText) findViewById(R.id.editText);
+        nbJoueur = Integer.parseInt(e.getText().toString());
+
+        AlertDialog.Builder mAlertDialog = new AlertDialog.Builder(this);
+        mAlertDialog.setTitle("Connexion ..");
+        mAlertDialog.setIcon(R.drawable.ic_menu_android);
+        mAlertDialog.setMessage("Attente des autres joueurs");
+        mAlertDialog.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        ServerThread st = new ServerThread(nbJoueur-1);
+                        st.run();
+                    }
+                }
+        );
+        mAlertDialog.show();
     }
 
     @Override

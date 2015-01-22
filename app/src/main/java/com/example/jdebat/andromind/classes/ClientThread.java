@@ -38,14 +38,16 @@ public class ClientThread {
             mmSocket.connect();
         } catch (IOException connectException) {
             // Unable to connect; close the socket and get out
-            try {
+            /*try {
                 mmSocket.close();
-            } catch (IOException closeException) { }
+            } catch (IOException closeException) { }*/
             return;
         }
 
         // Do work to manage the connection (in a separate thread)
         //manageConnectedSocket(mmSocket);
+        ConnectedThread ct = new ConnectedThread(mmSocket);
+        ct.run();
     }
 
     /** Will cancel an in-progress connection, and close the socket */
