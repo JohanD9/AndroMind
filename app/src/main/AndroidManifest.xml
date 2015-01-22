@@ -16,6 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".GameLauncherActivity"
             android:label="@string/title_activity_game_launcher" >
@@ -23,6 +24,10 @@
         <activity
             android:name=".SelectDeviceToConnectActivity"
             android:label="@string/title_activity_select_device_to_connect" >
+        </activity>
+        <activity
+            android:name=".GameActivity"
+            android:label="@string/title_activity_game" >
         </activity>
     </application>
 
