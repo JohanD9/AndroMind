@@ -10,6 +10,6 @@
     <string name="title_activity_game_launcher">GameLauncherActivity</string>
     <string name="title_activity_select_device_to_connect">SelectDeviceToConnectActivity</string>
     <string name="title_activity_game">GameActivity</string>
-
+    <string name="title_activity_create_game">CreateGameActivity</string>
 
 </resources>

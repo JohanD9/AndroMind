@@ -8,10 +8,10 @@
     tools:context="com.example.jdebat.andromind.GameActivity">
 
     <TableLayout style="@style/frag1TableLayout"
-        android:layout_centerVertical="true"
+        android:id="@+id/tableLayout_jeu"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/tableLayout_jeu">
+        android:layout_alignParentStart="true">
         <TableRow style="@style/frag1HeaderTableRow">
             <TextView style="@style/frag1HeaderCol" />
             <TextView style="@style/frag1HeaderCol" />
@@ -89,7 +89,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
-    <TableRow style="@style/frag1HeaderTableRow">
+    <TableRow style="@style/frag1HeaderTableRow"
+        android:layout_marginTop="20dp">
         <TextView style="@style/frag1HeaderCol" />
         <TextView style="@style/frag1HeaderCol" />
         <TextView style="@style/frag1HeaderCol" />
@@ -99,5 +100,17 @@
         <TextView style="@style/frag1HeaderCol" />
         <TextView style="@style/frag1HeaderCol" />
     </TableRow></TableLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Choix couleur :"
+        android:id="@+id/textView3"
+        android:textStyle="bold"
+        android:textColor="#ffeeeeee"
+        android:layout_above="@+id/tableLayout_choixCouleur"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
